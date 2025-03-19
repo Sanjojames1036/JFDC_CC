@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('https://www.hipsthetic.com/wp-content/uploads/2019/05/free-green-background-resume-template.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="user-name">John Doe</h1>
+        <p id="user-role">Web Developer</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section>
+        <label for="userSelect">Choose a user:</label>
+        <select id="userSelect" onchange="loadUserData()">
+            <option value="john">John Doe</option>
+            <option value="jane">Jane Smith</option>
+            <option value="alex">Alex Johnson</option>
+        </select>
+    </section>
+    <section id="about">
+        <h2>About Me</h2>
+        <p id="user-about">A passionate web developer with expertise in frontend technologies.</p>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skill">
+            <span>HTML</span>
+            <div class="progress" id="html-skill" data-percent="90"></div>
+        </div>
+        <div class="skill">
+            <span>CSS</span>
+            <div class="progress" id="css-skill" data-percent="80"></div>
+        </div>
+        <div class="skill">
+            <span>JavaScript</span>
+            <div class="progress" id="js-skill" data-percent="75"></div>
+        </div>
+    </section>
+    <section id="experience">
+        <h2>Experience</h2>
+        <p id="user-experience">3+ years of experience in web development.</p>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <script>
+        const users = {
+            john: {
+                name: "John Doe",
+                role: "Web Developer",
+                about: "A passionate web developer with expertise in frontend technologies.",
+                experience: "3+ years of experience in web development.",
+                skills: { html: 90, css: 80, js: 75 }
+            },
+            jane: {
+                name: "Jane Smith",
+                role: "UI/UX Designer",
+                about: "Creative UI/UX designer with a keen eye for modern design trends.",
+                experience: "5+ years of experience in design and prototyping.",
+                skills: { html: 70, css: 85, js: 65 }
+            },
+            alex: {
+                name: "Alex Johnson",
+                role: "Full Stack Developer",
+                about: "Full-stack developer with expertise in frontend and backend technologies.",
+                experience: "4+ years of experience in software development.",
+                skills: { html: 85, css: 75, js: 80 }
+            }
+        };
+
+        function loadUserData() {
+            const selectedUser = document.getElementById("userSelect").value;
+            const userData = users[selectedUser];
+
+            document.getElementById("user-name").textContent = userData.name;
+            document.getElementById("user-role").textContent = userData.role;
+            document.getElementById("user-about").textContent = userData.about;
+            document.getElementById("user-experience").textContent = userData.experience;
+            document.getElementById("html-skill").setAttribute("data-percent", userData.skills.html);
+            document.getElementById("css-skill").setAttribute("data-percent", userData.skills.css);
+            document.getElementById("js-skill").setAttribute("data-percent", userData.skills.js);
+        }
+    </script>
+</body>
+</html>
